@@ -1,30 +1,30 @@
 function getComputerChoice() {
-    // 生成 0 到 2 的随机整数
-    const randomNumber = Math.floor(Math.random() * 3);
+  // 生成 0 到 2 的随机整数
+  const randomNumber = Math.floor(Math.random() * 3);
 
-    // 根据随机数返回 "rock", "paper" 或 "scissors"
-    if (randomNumber === 0) {
-        return "rock";
-    } else if (randomNumber === 1) {
-        return "paper";
-    } else {
-        return "scissors";
-    }
+  // 根据随机数返回 "rock", "paper" 或 "scissors"
+  if (randomNumber === 0) {
+    return "rock";
+  } else if (randomNumber === 1) {
+    return "paper";
+  } else {
+    return "scissors";
+  }
 }
 
 function getHumanChoice() {
-    const validChoices = ["rock", "paper", "scissors"];
-    let userChoice = prompt("Please enter rock, paper, or scissors:").toLowerCase();
+  const validChoices = ["rock", "paper", "scissors"];
+  let userChoice = prompt(
+    "Please enter rock, paper, or scissors:"
+  ).toLowerCase();
 
-    if (validChoices.includes(userChoice)) {
-        return userChoice;
-    } else {
-        console.log("Invalid choice. Please try again.");
-        return getHumanChoice();
-    }
+  if (validChoices.includes(userChoice)) {
+    return userChoice;
+  } else {
+    console.log("Invalid choice. Please try again.");
+    return getHumanChoice();
+  }
 }
-
-
 
 // 调用函数并打印结果
 
@@ -32,31 +32,39 @@ let humanScore = 0;
 let computerScore = 0;
 
 function playRound(humanChoice, computerChoice) {
-    // 将 humanChoice 转换为小写，确保不区分大小写
-    humanChoice = humanChoice.toLowerCase();
+  // 将 humanChoice 转换为小写，确保不区分大小写
+  humanChoice = humanChoice.toLowerCase();
 
-    // 定义不同情况的胜负规则
-    if (humanChoice === computerChoice) {
-        console.log(`It's a tie! Both chose ${humanChoice}`);
-    } else if (
-        (humanChoice === "rock" && computerChoice === "scissors") ||
-        (humanChoice === "scissors" && computerChoice === "paper") ||
-        (humanChoice === "paper" && computerChoice === "rock")
-    ) {
-        // 如果人类获胜
-        humanScore++;
-        console.log(`You win! ${humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1)} beats ${computerChoice}`);
-    } else {
-        // 如果计算机获胜
-        computerScore++;
-        console.log(`You lose! ${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1)} beats ${humanChoice}`);
-    }
+  // 定义不同情况的胜负规则
+  if (humanChoice === computerChoice) {
+    console.log(`It's a tie! Both chose ${humanChoice}`);
+  } else if (
+    (humanChoice === "rock" && computerChoice === "scissors") ||
+    (humanChoice === "scissors" && computerChoice === "paper") ||
+    (humanChoice === "paper" && computerChoice === "rock")
+  ) {
+    // 如果人类获胜
+    humanScore++;
+    console.log(
+      `You win! ${
+        humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1)
+      } beats ${computerChoice}`
+    );
+  } else {
+    // 如果计算机获胜
+    computerScore++;
+    console.log(
+      `You lose! ${
+        computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1)
+      } beats ${humanChoice}`
+    );
+  }
 }
 
-function playgame(){
-    for(i=0;i<5;i++){
-        playRound(getHumanChoice(),getComputerChoice());
-    }
+function playgame() {
+  for (i = 0; i < 5; i++) {
+    playRound(getHumanChoice(), getComputerChoice());
+  }
 }
 
 playgame();
