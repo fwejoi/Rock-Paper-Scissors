@@ -31,6 +31,8 @@ function getHumanChoice() {
 let humanScore = 0;
 let computerScore = 0;
 
+const res = document.querySelector("#result");
+
 function playRound(humanChoice, computerChoice) {
   // 将 humanChoice 转换为小写，确保不区分大小写
   humanChoice = humanChoice.toLowerCase();
@@ -59,13 +61,19 @@ function playRound(humanChoice, computerChoice) {
       } beats ${humanChoice}`
     );
   }
+    res.textContent = `你的分数为：${humanScore} 电脑分数为：${computerScore}`;
+    
 }
 
-function playgame() {
-  for (i = 0; i < 5; i++) {
-    playRound(getHumanChoice(), getComputerChoice());
-  }
-}
+const btns=document.querySelectorAll('button');
+btns.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+        playRound(btn.textContent,getComputerChoice());
+        console.log(`${btn.textContent}`);
+    });
+});
 
-playgame();
-console.log(`你的分数："${humanScore}`);
+
+
+
+
